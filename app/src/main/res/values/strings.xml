@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Let Cook</string>
+    <string name="version">Version</string>
+    <string name="loading">Loading</string>
+    <string name="team">Trinh Nhu Thang</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="register">Đăng ký</string>
+    <string name="login">Đăng nhập</string>
+    <string name="repassword">Nhập lại mật khẩu</string>
+    <string name="forgotpassword">Quên mật khẩu ?</string>
+    <string name="error_emptyemail">Lỗi: Điền đầy đủ email</string>
+    <string name="error_emptypassword">Lỗi: Điền đầy đủ mật khẩu</string>
+    <string name="error_repassword">Lỗi: Mật khẩu nhập lại không khớp</string>
+    <string name="register_successful">Đăng ký thành công</string>
+    <string name="processing">Đang xử lý</string>
+    <string name="edit_info_user">Sửa thông tin</string>
+    <string name="post">Các bài đã đăng</string>
+    <string name="add_img">Thêm ảnh đại diện</string>
+    <string name="hint_cmt">   Bình luận về món ăn này...</string>
+    <string name="comment">Bình luận</string>
+    <string name="hint_ingredient">Vd:Một bó cải thảo</string>
+    <string name="dish_name">Tên món ăn</string>
+    <string name="name">Tên</string>
+    <string name="confirm">Đồng ý</string>
+    <string name="enter_dish_name">Điền tên món ăn</string>
+    <string name="desc_dish">Giới thiệu ngắn về món ăn</string>
+    <string name="example_igre">Ví dụ 100g bột</string>
+    <string name="add_dish">Thêm món ăn</string>
+    <string name="add_ingredient">Thêm nguyên liệu</string>
+    <string name="add_making">Thêm bước làm</string>
+    <string name="hint_making">Cách làm</string>
+
+
+    <string name="facebook_app_id">410997536314104</string>
+    <string name="server_client_id">382530993468-q97tg5tva5jv1e5mobstq75mc606m3hr.apps.googleusercontent.com</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_Making">Các bước làm</string>
+    <string name="title_comment">Bình luận</string>
+    <string name="title_ingredients">Nguyên liệu</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+
+</resources>
