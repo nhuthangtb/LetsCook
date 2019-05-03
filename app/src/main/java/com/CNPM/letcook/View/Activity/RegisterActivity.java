@@ -1,4 +1,4 @@
-package com.CNPM.letcook.View;
+package com.CNPM.letcook.View.Activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.CNPM.letcook.Controller.RegisterController;
+import com.CNPM.letcook.Controller.UserController;
 import com.CNPM.letcook.Model.UserModel;
 import com.CNPM.letcook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText editEmail, editPassword, editRePassword;
     FirebaseAuth firebaseAuth;
     ProgressDialog progressDialog ;
+    UserController userController;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +31,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressDialog = new ProgressDialog(this);
         setContentView(R.layout.layout_register);
         btnRegister = findViewById(R.id.btnRegister);
-        editEmail = findViewById(R.id.editEmail);
-        editPassword = findViewById(R.id.editPassWord);
+        editEmail = findViewById(R.id.edEmail);
+        editPassword = findViewById(R.id.edPassword);
         editRePassword = findViewById(R.id.editRePassword);
         btnRegister.setOnClickListener(this);
     }
@@ -55,23 +56,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, getString(R.string.error_repassword), Toast.LENGTH_SHORT).show();
 
         } else {
-            firebaseAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                progressDialog.dismiss();
-                                UserModel userModel = new UserModel();
-                                userModel.setName(email);
-                                userModel.setPic_profile("pic_profile.png");
-                                String uid = task.getResult().getUser().getUid();
-                                RegisterController registerController = new RegisterController();
-                                registerController.InfoUserController(userModel, uid);
-                                Toast.makeText(RegisterActivity.this, getString(R.string.register_successful), Toast.LENGTH_SHORT)
-                                        .show();
-                            }
-                        }
-                    });
+//            userController.Register(email,password);
         }
     }
 }

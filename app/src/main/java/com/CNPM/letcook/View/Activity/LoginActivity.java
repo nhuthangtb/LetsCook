@@ -1,4 +1,4 @@
-package com.CNPM.letcook.View;
+package com.CNPM.letcook.View.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,16 +7,21 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.CNPM.letcook.R;
+import com.CNPM.letcook.View.Fragment.EditInfoFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -25,7 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,FirebaseAuth.AuthStateListener, View.OnClickListener {
 
     private SignInButton btnLoginGoogle;
     private GoogleSignInClient mGoogleSignInClient;
@@ -33,11 +38,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private int RC_SIGN_IN = 1;
     private String TAG = "ActivityMain";
     private TextView txtRegister;
+    private EditText edEmail, edPassword;
+    private Button btnLogin;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_loginscreen);
         txtRegister = findViewById(R.id.txtRegister);
+        edEmail = findViewById(R.id.edEmail);
+        edPassword = findViewById(R.id.edPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(this);
         txtRegister.setOnClickListener(this);
 
 
@@ -57,6 +69,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void signInGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void signIn(){
+        String email = edEmail.getText().toString();
+        String password = edPassword.getText().toString();
+        if (!email.isEmpty() && !password.isEmpty()){
+            Task<AuthResult> authResultTask = mAuth.signInWithEmailAndPassword(email,password);
+            AuthResult authResult = authResultTask.getResult();
+            if (authResult != null){
+                FirebaseUser firebaseUser = authResult.getUser();
+                Log.d("auth-fire-base",firebaseUser.getEmail());
+            }else
+                Toast.makeText(this.getBaseContext(),"Auth failed.",Toast.LENGTH_SHORT).show();
+        }else
+            Toast.makeText(this.getBaseContext(),"Email and password are required.",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -113,16 +140,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        Intent iHomepage = new Intent(this, EditInfoFragment.class);
         switch (id) {
             case R.id.btnLoginGoogle:
                 signInGoogle();
-                Intent iHomepage = new Intent(LoginActivity.this, InfoActivity.class);
+
                 startActivity(iHomepage);
                 break;
             case R.id.txtRegister:
-                Intent iRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent iRegister = new Intent(this, RegisterActivity.class);
                 startActivity(iRegister);
                 break;
+            case R.id.btnLogin:
+                Log.d("lugon-dev", "button danh nhap");
+                signIn();
+                //startActivity(iHomepage);
+                break;
         }
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user != null){{
+            Intent iHomepage = new Intent(this, EditInfoFragment.class);
+            startActivity(iHomepage);
+        }}
     }
 }

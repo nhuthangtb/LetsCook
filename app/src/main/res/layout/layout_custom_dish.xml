@@ -127,7 +127,8 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <EditText
-                android:layout_width="fill_parent"
+                android:id="@+id/edComment"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_marginTop="2dp"
@@ -137,15 +138,14 @@
                 android:hint="   Bình luận về món ăn này..."
                 android:paddingLeft="7dp"
                 android:singleLine="true"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/common_google_signin_btn_text_light_normal"
-                android:inputType="numberDecimal"
-                android:src="@drawable/ic_send" />
+                android:id="@+id/btnSend"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_send"
+                android:visibility="visible" />
         </LinearLayout>
 
 

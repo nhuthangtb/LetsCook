@@ -4,29 +4,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.CNPM.letcook.Controller.CommentController;
 import com.CNPM.letcook.Model.DishModel;
 import com.CNPM.letcook.Model.UserModel;
 import com.CNPM.letcook.R;
-import com.CNPM.letcook.View.DishActivity;
+import com.CNPM.letcook.View.Activity.DishActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -35,10 +33,10 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
-    List<DishModel> dishModelList;
-    int resource;
-    Context context;
-    List<String> likedList, savedList;
+    private List<DishModel> dishModelList;
+    private int resource;
+    private Context context;
+    private CommentController commentController;
 
     public RecyclerViewAdapter(Context context, List<DishModel> dishModelList, int resource) {
         this.dishModelList = dishModelList;
@@ -61,11 +59,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         recyclerViewHolder.txtDishName.setText(dishModel.getDish_name());
         recyclerViewHolder.txtDescription.setText(dishModel.getDesc());
 
-        UserModel userModel = dishModel.getUserModel();
+        final UserModel userModel = dishModel.getUserModel();
 
 
         recyclerViewHolder.txtUserName.setText(userModel.getName());
-
+        final String comment = recyclerViewHolder.edComment.getText().toString();
+        recyclerViewHolder.btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!comment.trim().equals("")) {
+                    commentController = new CommentController();
+                    commentController.addComment(comment, dishModel.getDish_id());
+                }
+                else {
+                    Toast.makeText(context,"Nhập vào comment",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
         setImgComment(recyclerViewHolder.img_profile,userModel.getPic_profile());
@@ -103,7 +113,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ImageView imgDish;
         CircleImageView img_profile;
         CardView cardView;
-        ImageButton btnLike;
+        ImageButton btnLike, btnSend;
+        EditText edComment;
+
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -114,6 +126,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imgDish = itemView.findViewById(R.id.imgDish);
             cardView = itemView.findViewById(R.id.cardView);
             btnLike = itemView.findViewById(R.id.btnLike);
+            btnSend = itemView.findViewById(R.id.btnSend);
+            edComment = itemView.findViewById(R.id.edComment);
         }
     }
+
 }

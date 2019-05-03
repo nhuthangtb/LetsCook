@@ -6,36 +6,15 @@ import android.os.Parcelable;
 import java.util.List;
 
 public class CommentModel implements Parcelable {
-    int like;
-    UserModel userModel;
-    String cmt_content;
 
-    public String getCmt_content() {
-        return cmt_content;
-    }
-
-    public void setCmt_content(String cmt_content) {
-        this.cmt_content = cmt_content;
-    }
-
-    String user_id;
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public CommentModel() {
-
-    }
-
+    private UserModel userModel;
+    private String cmt_content;
+    private String user_id;
     protected CommentModel(Parcel in) {
-        like = in.readInt();
-        cmt_content = in.readString();
+
         userModel = in.readParcelable(UserModel.class.getClassLoader());
+        cmt_content = in.readString();
+        user_id = in.readString();
     }
 
     public static final Creator<CommentModel> CREATOR = new Creator<CommentModel>() {
@@ -50,13 +29,28 @@ public class CommentModel implements Parcelable {
         }
     };
 
-    public int getLike() {
-        return like;
+    public String getCmt_content() {
+        return cmt_content;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    public void setCmt_content(String cmt_content) {
+        this.cmt_content = cmt_content;
     }
+
+
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public CommentModel() {
+
+    }
+
 
     public UserModel getUserModel() {
         return userModel;
@@ -66,9 +60,6 @@ public class CommentModel implements Parcelable {
         this.userModel = userModel;
     }
 
-
-
-
     @Override
     public int describeContents() {
         return 0;
@@ -76,8 +67,12 @@ public class CommentModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(like);
+
+        dest.writeParcelable(userModel, flags);
         dest.writeString(cmt_content);
-        dest.writeParcelable(userModel,flags);
+        dest.writeString(user_id);
     }
+
+
+
 }

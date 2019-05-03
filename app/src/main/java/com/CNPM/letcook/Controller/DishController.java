@@ -7,14 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 
 import com.CNPM.letcook.Adapters.RecyclerViewAdapter;
 import com.CNPM.letcook.Controller.Interface.HomePageInterface;
 import com.CNPM.letcook.Model.DishModel;
 import com.CNPM.letcook.R;
-import com.CNPM.letcook.View.DishActivity;
 import com.CNPM.letcook.View.VerticalSpaceItemDecoration;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -23,14 +21,14 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageController {
-    Context context;
-    DishModel dishModel;
-    RecyclerViewAdapter recyclerViewAdapter;
+public class DishController {
+    private Context context;
+    private DishModel dishModel;
+    private RecyclerViewAdapter recyclerViewAdapter;
 
     int item = 3;
 
-    public HomePageController(Context context) {
+    public DishController(Context context) {
         this.context = context;
         dishModel = new DishModel();
     }
@@ -74,8 +72,6 @@ public class HomePageController {
                                 dishModelList.add(dishModel);
                                 recyclerViewAdapter.notifyDataSetChanged();
                             }
-
-
                         }
                     });
 
@@ -96,4 +92,6 @@ public class HomePageController {
         });
         dishModel.getListDish(homePageInterface, item, 0);
     }
+
+
 }

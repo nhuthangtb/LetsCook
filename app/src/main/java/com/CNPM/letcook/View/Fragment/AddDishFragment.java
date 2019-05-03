@@ -1,8 +1,10 @@
-package com.CNPM.letcook.View;
+package com.CNPM.letcook.View.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AddDishActivity extends AppCompatActivity {
+public class AddDishFragment extends Fragment {
     ImageButton btnAddImg;
     EditText editDishname, editDescDish, edAddMaking, edAddIngredient;
     Button btnAddDish, btnAddMaking, btnAddIgre;
@@ -31,23 +33,26 @@ public class AddDishActivity extends AppCompatActivity {
     List<String> Makings = new ArrayList<>();
     LinearLayout layoutIgre, layout, viewAddMaking, viewMaking;
 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
+        return  inflater.inflate(R.layout.layout_add_dish,container,false);
+    }
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_add_dish);
-        edAddIngredient = findViewById(R.id.edAddIngredient);
-        edAddMaking = findViewById(R.id.edAddMaking);
-        txtMaking = findViewById(R.id.txtMaking);
-        btnAddImg = findViewById(R.id.btnAddAvatar);
-        editDishname = findViewById(R.id.editDishName);
-        editDescDish = findViewById(R.id.editDescDish);
-        btnAddIgre = findViewById(R.id.btnAddIgre);
-        btnAddDish = findViewById(R.id.btnAddDish);
-        btnAddMaking = findViewById(R.id.btnAddMaking);
-        layoutIgre = findViewById(R.id.layoutIgre);
-        layout = findViewById(R.id.layout);
-        viewAddMaking = findViewById(R.id.viewAddMaking);
-        viewMaking = findViewById(R.id.viewMaking);
+    public void onStart() {
+        super.onStart();
+        edAddIngredient = getView().findViewById(R.id.edAddIngredient);
+        edAddMaking = getView().findViewById(R.id.edAddMaking);
+        txtMaking = getView().findViewById(R.id.txtMaking);
+        btnAddImg = getView().findViewById(R.id.btnAddAvatar);
+        editDishname = getView().findViewById(R.id.editDishName);
+        editDescDish = getView().findViewById(R.id.editDescDish);
+        btnAddIgre = getView().findViewById(R.id.btnAddIgre);
+        btnAddDish = getView().findViewById(R.id.btnAddDish);
+        btnAddMaking = getView().findViewById(R.id.btnAddMaking);
+        layoutIgre = getView().findViewById(R.id.layoutIgre);
+        layout = getView().findViewById(R.id.layout);
+        viewAddMaking = getView().findViewById(R.id.viewAddMaking);
+        viewMaking = getView().findViewById(R.id.viewMaking);
 
         btnAddMaking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +98,7 @@ public class AddDishActivity extends AppCompatActivity {
                 if (edAddIngredient.getText().toString().equals("")
                         || editDishname.getText().toString().equals("")
                         || editDescDish.getText().toString().equals(""))
-                    Toast.makeText(AddDishActivity.this, "Điền đầy đủ thông tin món ăn", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Điền đầy đủ thông tin món ăn", Toast.LENGTH_SHORT).show();
                 else {
                     addDish();
                     clear();
@@ -115,11 +120,11 @@ public class AddDishActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//    }
 
     private void addDish() {
         String dishName = editDishname.getText().toString();
@@ -171,7 +176,7 @@ public class AddDishActivity extends AppCompatActivity {
         if (Makings.size() > 0) {
             for (int i = 0; i < Makings.size(); i++) {
                 if (edAddMaking.getText().toString().trim().equals(Makings.get(i))) {
-                    Toast.makeText(AddDishActivity.this, "Cách làm đã có", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Cách làm đã có", Toast.LENGTH_SHORT).show();
 
                 }
             }

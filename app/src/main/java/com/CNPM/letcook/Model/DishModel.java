@@ -39,7 +39,6 @@ public class DishModel implements Parcelable {
         dish_pic = in.createStringArrayList();
         making = in.createStringArrayList();
         commentModels = in.createTypedArrayList(CommentModel.CREATOR);
-        bitmapList = in.createTypedArrayList(Bitmap.CREATOR);
     }
 
     public static final Creator<DishModel> CREATOR = new Creator<DishModel>() {
@@ -262,29 +261,8 @@ public class DishModel implements Parcelable {
         dest.writeStringList(dish_pic);
         dest.writeStringList(making);
         dest.writeTypedList(commentModels);
-        dest.writeTypedList(bitmapList);
     }
 
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//
-//        dest.writeString(diet);
-//        dest.writeString(dish_name);
-//        dest.writeString(dish_id);
-//        dest.writeString(desc);
-//        dest.writeString(user_id);
-//        dest.writeInt(likes);
-//        dest.writeParcelable(userModel,flags);
-//        dest.writeStringList(ingredients);
-//        dest.writeStringList(dish_pic);
-//        dest.writeStringList(making);
-//        dest.writeTypedList(commentModels);
-//    }
 
 
 

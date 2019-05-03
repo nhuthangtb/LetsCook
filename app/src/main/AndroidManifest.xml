@@ -11,29 +11,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.CNPM.letcook.View.FlashScreenActivity" />
-        <activity android:name="com.CNPM.letcook.View.LoginActivity">
+        <activity android:name="com.CNPM.letcook.View.Activity.FlashScreenActivity" />
+        <activity android:name="com.CNPM.letcook.View.Activity.LoginActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
-        <activity android:name="com.CNPM.letcook.View.RegisterActivity">
-
-        </activity>
-        <activity android:name="com.CNPM.letcook.View.HomePageActivity">
+        <activity android:name="com.CNPM.letcook.View.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.CNPM.letcook.View.DishActivity">
+        <activity android:name="com.CNPM.letcook.View.Activity.RegisterActivity">
 
         </activity>
-        <activity android:name=".View.AddDishActivity">
+        <!--<activity android:name="com.CNPM.letcook.View.Fragment.HomePageFragment">-->
+
+        <!--</activity>-->
+        <activity android:name="com.CNPM.letcook.View.Activity.DishActivity">
 
         </activity>
-        <activity android:name=".View.InfoActivity" >
+        <activity android:name=".View.Fragment.AddDishFragment">
 
         </activity>
+        <!--<activity android:name=".View.EditInfoFragment" >-->
+
+        <!--</activity>-->
     </application>
 
 </manifest>

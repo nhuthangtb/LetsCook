@@ -1,4 +1,4 @@
-package com.CNPM.letcook.View;
+package com.CNPM.letcook.View.Activity;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;

@@ -1,4 +1,4 @@
-package com.CNPM.letcook.View;
+package com.CNPM.letcook.View.Activity;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,15 +18,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.CNPM.letcook.Adapters.AdapterMaking;
 import com.CNPM.letcook.Adapters.CommentAdapter;
+import com.CNPM.letcook.Controller.CommentController;
 import com.CNPM.letcook.Controller.Interface.HomePageInterface;
 import com.CNPM.letcook.Model.DishModel;
 import com.CNPM.letcook.R;
+import com.CNPM.letcook.View.VerticalSpaceItemDecoration;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -34,17 +38,17 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DishActivity extends AppCompatActivity implements HomePageInterface {
     TextView txtDishName, txtDesc, txtTitleIngre, txtIngredients, txtTitleMaking, txtTitleComment;
+    EditText edComment;
+    ImageButton btnSend;
     ImageView imgDish;
     DishModel dishModel;
-    Toolbar toolbar;
     RecyclerView recyclerViewComment, recyclerViewMaking;
     CommentAdapter commentAdapter;
     AdapterMaking adapterMaking;
-//    ListView listViewMaking;
+    CommentController commentController;
 
 
     @Override
@@ -53,7 +57,6 @@ public class DishActivity extends AppCompatActivity implements HomePageInterface
         setContentView(R.layout.layout_dish);
 
         dishModel = getIntent().getParcelableExtra("dish");
-//        toolbar = findViewById(R.id.toolbar);
         txtDishName = findViewById(R.id.txtDishName);
         txtDesc = findViewById(R.id.txtDesc);
         txtTitleIngre = findViewById(R.id.txtTitleIngre);
@@ -62,14 +65,18 @@ public class DishActivity extends AppCompatActivity implements HomePageInterface
         txtTitleComment = findViewById(R.id.txtTitleComment);
         imgDish = findViewById(R.id.imgDish);
         recyclerViewComment = findViewById(R.id.recycleViewComment);
-//        listViewMaking = findViewById(R.id.listViewMaking);
         recyclerViewMaking = findViewById(R.id.recycleViewMaking);
+        edComment = findViewById(R.id.edComment);
+        btnSend = findViewById(R.id.btnSend);
+
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        // Hiển thị thông tin món ăn
         getListDishModel(dishModel);
         txtDishName.setText(dishModel.getDish_name());
         txtTitleComment.setText(R.string.title_comment);
@@ -86,7 +93,7 @@ public class DishActivity extends AppCompatActivity implements HomePageInterface
         recyclerViewMaking.setAdapter(adapterMaking);
         txtTitleIngre.setText(R.string.title_ingredients);
         List<String> Ingredients = dishModel.getIngredients();
-        String ingre = "";
+        String  ingre = "";
         for (String item : Ingredients) {
             ingre += "-" + item + ";\n";
         }
@@ -96,6 +103,11 @@ public class DishActivity extends AppCompatActivity implements HomePageInterface
         commentAdapter = new CommentAdapter(this, R.layout.layout_custom_comment, dishModel.getCommentModels());
         recyclerViewComment.setAdapter(commentAdapter);
         commentAdapter.notifyDataSetChanged();
+        // Thêm comment
+        String comment = edComment.getText().toString();
+        commentController = new CommentController();
+        commentController.addComment(comment,dishModel.getDish_id());
+
 
     }
 

@@ -35,9 +35,11 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/btnEditInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_orange_light"
+                android:padding="3dp"
                 android:text="@string/edit_info_user"
                 />
         </LinearLayout>
