@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        Intent iHomepage = new Intent(this, EditInfoFragment.class);
+        Intent iHomepage = new Intent(this, MainActivity.class);
         switch (id) {
             case R.id.btnLoginGoogle:
                 signInGoogle();

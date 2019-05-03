@@ -13,19 +13,19 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.CNPM.letcook.View.Activity.FlashScreenActivity" />
         <activity android:name="com.CNPM.letcook.View.Activity.LoginActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity android:name="com.CNPM.letcook.View.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.CNPM.letcook.View.Activity.MainActivity"/>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+
         <activity android:name="com.CNPM.letcook.View.Activity.RegisterActivity">
 
         </activity>
@@ -35,9 +35,7 @@
         <activity android:name="com.CNPM.letcook.View.Activity.DishActivity">
 
         </activity>
-        <activity android:name=".View.Fragment.AddDishFragment">
 
-        </activity>
         <!--<activity android:name=".View.EditInfoFragment" >-->
 
         <!--</activity>-->
