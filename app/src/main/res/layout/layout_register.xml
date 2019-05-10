@@ -1,83 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
-
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp">
+        android:layout_height="wrap_content"
+        >
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="175dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/letcook_logo" />
-
-        <EditText
-            android:id="@+id/edEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:drawableLeft="@drawable/ico_user"
-            android:drawablePadding="7dp"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textPersonName"
-            android:textColor="#F5f5f5"
-            android:textColorHint="#F5f5f5" />
 
-        <EditText
-            android:id="@+id/edPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:drawableLeft="@drawable/icon_pass"
-            android:drawablePadding="7dp"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPersonName|textPassword"
-            android:textColor="#F5f5f5"
-            android:textColorHint="#F5f5f5" />
-
-        <EditText
-            android:id="@+id/editRePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:drawableLeft="@drawable/icon_pass"
-            android:drawablePadding="7dp"
-            android:ems="10"
-            android:hint="@string/repassword"
-            android:inputType="textPersonName|textPassword"
-            android:textColor="#F5f5f5"
-            android:textColorHint="#F5f5f5" />
-
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="10dp"
-            android:text="@string/register" />
-
-
+            android:background="@drawable/letcook_logo" />
     </LinearLayout>
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <EditText
+                android:id="@+id/edEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ico_user"
+                android:fontFamily="sans-serif"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="15dp"
+                android:textColorHint="@color/colorAccent" />
+
+            <EditText
+                android:id="@+id/edPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@string/font_family"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingBottom="15dp"
+                android:drawableLeft="@drawable/icon_pass"
+                android:textColorHint="@color/colorAccent" />
+            <EditText
+                android:id="@+id/edRepassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_pass"
+                android:fontFamily="@string/font_family"
+                android:hint="@string/email"
+                android:inputType="textPassword"
+                android:paddingBottom="15dp"
+                android:textColorHint="@color/colorAccent"
+                android:drawableStart="@drawable/icon_pass" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="7dp"
+
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/textViewLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/hint_login"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorAccent" />
+
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+</LinearLayout>

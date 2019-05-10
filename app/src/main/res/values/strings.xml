@@ -12,7 +12,6 @@
     <string name="error_emptyemail">Lỗi: Điền đầy đủ email</string>
     <string name="error_emptypassword">Lỗi: Điền đầy đủ mật khẩu</string>
     <string name="error_repassword">Lỗi: Mật khẩu nhập lại không khớp</string>
-    <string name="register_successful">Đăng ký thành công</string>
     <string name="processing">Đang xử lý</string>
     <string name="edit_info_user">Sửa thông tin</string>
     <string name="post">Các bài đã đăng</string>
@@ -30,10 +29,16 @@
     <string name="add_ingredient">Thêm nguyên liệu</string>
     <string name="add_making">Thêm bước làm</string>
     <string name="hint_making">Cách làm</string>
+    <string name="error_empty_email">Email trống</string>
+    <string name="error_empty_password">Password trống</string>
+    <string name="register_successfull">Đăng ký thành công</string>
+    <string name="font_family">sans-serif</string>
+    <string name="hint_login">Đã có tài khoản?</string>
+
 
 
     <string name="facebook_app_id">410997536314104</string>
-    <string name="server_client_id">382530993468-q97tg5tva5jv1e5mobstq75mc606m3hr.apps.googleusercontent.com</string>
+    <string name="server_client_id">382530993468-2f3i23g7n4ru720l0qdjgguajdl0epib.apps.googleusercontent.com</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_Making">Các bước làm</string>

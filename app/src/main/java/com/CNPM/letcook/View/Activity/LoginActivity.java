@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private TextView txtRegister;
     private EditText edEmail, edPassword;
     private Button btnLogin;
-    FirebaseAuth firebaseAuth;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,19 +73,49 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    private void signIn(){
-        String email = edEmail.getText().toString();
-        String password = edPassword.getText().toString();
-        if (!email.isEmpty() && !password.isEmpty()){
-            Task<AuthResult> authResultTask = mAuth.signInWithEmailAndPassword(email,password);
-            AuthResult authResult = authResultTask.getResult();
-            if (authResult != null){
-                FirebaseUser firebaseUser = authResult.getUser();
-                Log.d("auth-fire-base",firebaseUser.getEmail());
-            }else
-                Toast.makeText(this.getBaseContext(),"Auth failed.",Toast.LENGTH_SHORT).show();
-        }else
-            Toast.makeText(this.getBaseContext(),"Email and password are required.",Toast.LENGTH_SHORT).show();
+    private void userLogin(){
+        String email = edEmail.getText().toString().trim();
+        String password = edPassword.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            edEmail.setError("Nhập vào email");
+            edEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edEmail.setError("Email không hợp lệ");
+            edEmail.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            edPassword.setError("Nhập vào password");
+            edPassword.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6) {
+            edPassword.setError("Mật khẩu phải nhiều hơn 6 ký tự");
+            edPassword.requestFocus();
+            return;
+        }
+        progressBar.setVisibility(View.VISIBLE);
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
+                if (task.isSuccessful()) {
+                    finish();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -153,7 +185,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 break;
             case R.id.btnLogin:
                 Log.d("lugon-dev", "button danh nhap");
-                signIn();
+                userLogin();
                 //startActivity(iHomepage);
                 break;
         }

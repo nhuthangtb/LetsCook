@@ -1,62 +1,96 @@
 package com.CNPM.letcook.View.Activity;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.CNPM.letcook.Controller.UserController;
-import com.CNPM.letcook.Model.UserModel;
 import com.CNPM.letcook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+    EditText edEmail, edPassword, edRepassword;
     Button btnRegister;
-    EditText editEmail, editPassword, editRePassword;
-    FirebaseAuth firebaseAuth;
-    ProgressDialog progressDialog ;
-    UserController userController;
+    ProgressBar progressBar;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        firebaseAuth = firebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(this);
+        mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.layout_register);
+        edEmail = findViewById(R.id.edEmail);
+        edPassword = findViewById(R.id.edPassword);
+        edRepassword = findViewById(R.id.edRepassword);
         btnRegister = findViewById(R.id.btnRegister);
-        editEmail = findViewById(R.id.edEmail);
-        editPassword = findViewById(R.id.edPassword);
-        editRePassword = findViewById(R.id.editRePassword);
+        progressBar = findViewById(R.id.progressbar);
         btnRegister.setOnClickListener(this);
+    }
+
+    private void Register() {
+        String email = edEmail.getText().toString().trim();
+        String password = edPassword.getText().toString().trim();
+        if (email.isEmpty()) {
+            edEmail.setError("Email trống");
+            edEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edEmail.setError("Vui lòng nhập email");
+            edEmail.requestFocus();
+            return;
+        }
+
+
+        if (password.length() < 6) {
+            edPassword.setError("Mật khẩu dài hơn 6 ký tự");
+            edPassword.requestFocus();
+            return;
+        }
+
+
+        if (password.isEmpty()) {
+
+            edPassword.setError("Password is empty");
+            edPassword.requestFocus();
+            return;
+        }
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
+                if (task.isSuccessful()) {
+                    finish();
+                    Toast.makeText(getApplicationContext(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(getApplicationContext(), "Bạn đã đăng ký", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-        final String email = editEmail.getText().toString();
-        String password = editPassword.getText().toString();
-        String repassword = editRePassword.getText().toString();
-
-        progressDialog.setMessage(getString(R.string.processing));
-        progressDialog.setIndeterminate(true);
-        progressDialog.show();
-        if (email.trim().length() == 0) {
-            Toast.makeText(this, getString(R.string.error_emptyemail), Toast.LENGTH_SHORT).show();
-        } else if (password.trim().length() == 0) {
-            Toast.makeText(this, getString(R.string.error_emptypassword), Toast.LENGTH_SHORT).show();
-        } else if (repassword.trim().length() == 0) {
-            Toast.makeText(this, getString(R.string.error_emptypassword), Toast.LENGTH_SHORT).show();
-        } else if (!repassword.equals(password)) {
-            Toast.makeText(this, getString(R.string.error_repassword), Toast.LENGTH_SHORT).show();
-
-        } else {
-//            userController.Register(email,password);
+        switch (v.getId()) {
+            case R.id.btnRegister:
+                Register();
+                break;
         }
     }
 }
