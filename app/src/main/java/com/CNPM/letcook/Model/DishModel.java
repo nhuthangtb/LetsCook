@@ -53,13 +53,9 @@ public class DishModel implements Parcelable {
         }
     };
 
-    public UserModel getUserModel() {
-        return userModel;
-    }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
-    }
+
+
 
     public String getUser_id() {
         return user_id;
@@ -157,6 +153,13 @@ public class DishModel implements Parcelable {
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
+    }
 
     private DataSnapshot dataRoot;
 
@@ -185,6 +188,8 @@ public class DishModel implements Parcelable {
         }
 
     }
+
+
 
     private void _getListDish(DataSnapshot dataSnapshot, HomePageInterface homePageInterface, int itemNext, int itemCurrent) {
 

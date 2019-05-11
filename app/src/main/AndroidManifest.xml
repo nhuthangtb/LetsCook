@@ -13,21 +13,17 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.CNPM.letcook.View.Activity.FlashScreenActivity" />
         <activity android:name="com.CNPM.letcook.View.Activity.LoginActivity">
-
-        </activity>
-        <activity android:name="com.CNPM.letcook.View.Activity.MainActivity"/>
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-
-        <activity android:name="com.CNPM.letcook.View.Activity.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.CNPM.letcook.View.Activity.MainActivity">
+
+        </activity>
+        <activity android:name="com.CNPM.letcook.View.Activity.RegisterActivity">
+
         </activity>
         <!--<activity android:name="com.CNPM.letcook.View.Fragment.HomePageFragment">-->
 

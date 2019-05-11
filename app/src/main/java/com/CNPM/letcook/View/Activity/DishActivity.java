@@ -68,7 +68,15 @@ public class DishActivity extends AppCompatActivity implements HomePageInterface
         recyclerViewMaking = findViewById(R.id.recycleViewMaking);
         edComment = findViewById(R.id.edComment);
         btnSend = findViewById(R.id.btnSend);
-
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Thêm comment
+                String comment = edComment.getText().toString();
+                commentController = new CommentController();
+                commentController.addComment(comment,dishModel.getDish_id());
+            }
+        });
 
     }
 
@@ -103,10 +111,7 @@ public class DishActivity extends AppCompatActivity implements HomePageInterface
         commentAdapter = new CommentAdapter(this, R.layout.layout_custom_comment, dishModel.getCommentModels());
         recyclerViewComment.setAdapter(commentAdapter);
         commentAdapter.notifyDataSetChanged();
-        // Thêm comment
-        String comment = edComment.getText().toString();
-        commentController = new CommentController();
-        commentController.addComment(comment,dishModel.getDish_id());
+
 
 
     }

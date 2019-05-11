@@ -100,12 +100,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             edPassword.requestFocus();
             return;
         }
-        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
+//                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     finish();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -184,7 +184,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivity(iRegister);
                 break;
             case R.id.btnLogin:
-                Log.d("lugon-dev", "button danh nhap");
                 userLogin();
                 //startActivity(iHomepage);
                 break;

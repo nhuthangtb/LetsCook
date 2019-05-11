@@ -15,6 +15,10 @@ import com.CNPM.letcook.Model.DishModel;
 import com.CNPM.letcook.R;
 import com.CNPM.letcook.View.VerticalSpaceItemDecoration;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -93,5 +97,12 @@ public class DishController {
         dishModel.getListDish(homePageInterface, item, 0);
     }
 
+
+    public void addDish(DishModel dishModel){
+        DatabaseReference nodeDish = FirebaseDatabase.getInstance().getReference().child("dish");
+
+        String dish_id = nodeDish.push().getKey();
+        nodeDish.child(dish_id).setValue(dishModel);
+    }
 
 }

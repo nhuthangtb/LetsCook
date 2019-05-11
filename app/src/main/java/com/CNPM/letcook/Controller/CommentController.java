@@ -7,18 +7,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CommentController {
-    DatabaseReference nodeComment = FirebaseDatabase.getInstance().getReference().child("comments");
-    CommentModel commentModel;
-    public void addComment(String content,String dishID ){
+    private DatabaseReference nodeComment;
+    private CommentModel commentModel;
+    private FirebaseUser user;
+
+    public CommentController() {
+        nodeComment = FirebaseDatabase.getInstance().getReference().child("comments");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+    }
+
+    public void addComment(String content, String dishID ){
             commentModel = new CommentModel();
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
             DatabaseReference nodeDishID = nodeComment.child(dishID);
             String commentID = nodeDishID.push().getKey();
             DatabaseReference nodeCommentID = nodeDishID.child(commentID);
             commentModel.setCmt_content(content);
             commentModel.setUser_id(user.getUid());
             nodeCommentID.setValue(commentModel);
-
 
     }
 

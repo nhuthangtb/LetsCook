@@ -1,5 +1,6 @@
 package com.CNPM.letcook.View.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.CNPM.letcook.Controller.UserController;
+import com.CNPM.letcook.Model.UserModel;
 import com.CNPM.letcook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void Register() {
-        String email = edEmail.getText().toString().trim();
+        final String email = edEmail.getText().toString().trim();
         String password = edPassword.getText().toString().trim();
         if (email.isEmpty()) {
             edEmail.setError("Email trống");
@@ -72,11 +75,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
-                    finish();
+//                    finish();
+                    UserModel userModel = new UserModel();
+                    userModel.setName(email);
+                    userModel.setPic_profile("pic_profile");
+                    String uid = task.getResult().getUser().getUid();
+                    UserController userController = new UserController();
+                    userController.InfoUserController(userModel, uid);
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(getApplicationContext(), "Bạn đã đăng ký", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Tài khoản này đã được đăng ký", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

@@ -26,24 +26,7 @@ public class UserController {
         this.userModel = userModel;
     }
 
-//    public void Register(final String email, String password){
-//        firebaseAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-////                            progressDialog.dismiss();
-//                            userModel.setName(email);
-//                            userModel.setPic_profile("pic_profile.png");
-//                            String uid = task.getResult().getUser().getUid();
-//                            InfoUserController(getUserModel(), uid);
-////                            Toast.makeText(RegisterActivity.CONTEXT_IGNORE_SECURITY, getString(R.string.register_successful), Toast.LENGTH_SHORT)
-////                                    .show();
-//                        }
-//                    }
-//                });
-//
-//    }
+
 
     public void addComment(){
 

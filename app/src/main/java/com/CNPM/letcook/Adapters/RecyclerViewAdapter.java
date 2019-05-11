@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,11 @@ import com.CNPM.letcook.View.Activity.DishActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -37,7 +43,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private int resource;
     private Context context;
     private CommentController commentController;
-
     public RecyclerViewAdapter(Context context, List<DishModel> dishModelList, int resource) {
         this.dishModelList = dishModelList;
         this.resource = resource;
@@ -48,9 +53,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(resource, viewGroup, false);
-        RecyclerViewHolder viewHolder = new RecyclerViewHolder(view);
 
-        return viewHolder;
+        return new RecyclerViewHolder(view);
     }
 
     @Override
@@ -63,16 +67,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
         recyclerViewHolder.txtUserName.setText(userModel.getName());
-        final String comment = recyclerViewHolder.edComment.getText().toString();
+
+
         recyclerViewHolder.btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!comment.trim().equals("")) {
+                final String comment = recyclerViewHolder.edComment.getText().toString();
+                if(!comment.isEmpty()) {
                     commentController = new CommentController();
                     commentController.addComment(comment, dishModel.getDish_id());
+
                 }
                 else {
-                    Toast.makeText(context,"Nhập vào comment",Toast.LENGTH_SHORT).show();
+                    recyclerViewHolder.edComment.setError("Comment trống nè hihi!!!");
+                    recyclerViewHolder.edComment.requestFocus();
                 }
             }
         });

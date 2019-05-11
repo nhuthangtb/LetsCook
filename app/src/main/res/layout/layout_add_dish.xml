@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:layout="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,7 +18,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingRight="10dp">
 
             <ImageButton
                 android:id="@+id/btnAddAvatar"
@@ -54,37 +57,24 @@
                     android:textSize="25sp" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/edAddIngredient"
-                        android:layout_width="311dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/textview_border"
-                        android:ems="10"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <Button
-                        android:id="@+id/btnAddIgre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thêm">
-
-                    </Button>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:background="@drawable/textview_border"
                     android:id="@+id/layoutIgre"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/textview_border"
+                    android:orientation="vertical">
+
+
+                    <include layout="@layout/field_add_ingredient" />
+
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtAddIngre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/add_ingredient" />
             </LinearLayout>
 
 
@@ -100,39 +90,31 @@
                     android:text="@string/title_Making"
                     android:textSize="25sp" />
 
-
                 <LinearLayout
-                    android:id="@+id/viewMaking"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/edAddMaking"
-                        android:layout_width="311dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/textview_border"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="Name" />
-
-                    <Button
-                        android:id="@+id/btnAddMaking"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thêm">
-
-                    </Button>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/viewAddMaking"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/textview_border"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                </LinearLayout>
+                    <include
+                        android:id="@+id/test"
+                        layout="@layout/field_add_making" />
 
+                    <LinearLayout
+                        android:id="@+id/viewAddMaking"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtAddMaking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/add_making" />
+                </LinearLayout>
 
 
                 <Button
