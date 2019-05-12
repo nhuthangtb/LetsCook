@@ -65,16 +65,56 @@
                 android:layout_height="232dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <CheckBox
 
-            <ImageButton
-                android:id="@+id/btnLike"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/colorAccent"
-                android:src="@drawable/baseline_thumb_up_black_18dp" />
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/checkBoxLike"
+                    android:background="@drawable/ic_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    />
+                <CheckBox
+                    android:id="@+id/checkBoxSave"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/ic_save"
+                    android:button="@null"
+                    android:checked="false"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/txtComment"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/ic_insert_comment_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/txtNumLike"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 lượt thích"/>
+                <TextView
+                    android:id="@+id/txtNumSave"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 lượt lưu"/>
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

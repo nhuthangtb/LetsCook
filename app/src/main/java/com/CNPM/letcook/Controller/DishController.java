@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,13 +13,18 @@ import android.support.v7.widget.RecyclerView;
 import com.CNPM.letcook.Adapters.RecyclerViewAdapter;
 import com.CNPM.letcook.Controller.Interface.HomePageInterface;
 import com.CNPM.letcook.Model.DishModel;
+import com.CNPM.letcook.Model.UserModel;
 import com.CNPM.letcook.R;
 import com.CNPM.letcook.View.VerticalSpaceItemDecoration;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -35,6 +41,7 @@ public class DishController {
     public DishController(Context context) {
         this.context = context;
         dishModel = new DishModel();
+
     }
 
     public void getListDishController(Context context,final RecyclerView recyclerView, NestedScrollView nestedScrollView) {
@@ -104,5 +111,8 @@ public class DishController {
         String dish_id = nodeDish.push().getKey();
         nodeDish.child(dish_id).setValue(dishModel);
     }
+
+
+
 
 }

@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.CNPM.letcook.Controller.UserController;
 import com.CNPM.letcook.R;
 import com.CNPM.letcook.View.Fragment.EditInfoFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -108,9 +109,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     finish();
+
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+
                 } else {
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -123,6 +126,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
+
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);

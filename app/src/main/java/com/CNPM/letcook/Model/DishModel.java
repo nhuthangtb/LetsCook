@@ -21,7 +21,10 @@ public class DishModel implements Parcelable {
     private String diet, dish_name, dish_id, desc, user_id;
     private UserModel userModel;
     private int likes;
-    private List<String> ingredients, dish_pic, making;
+
+
+
+    private List<String> ingredients, dish_pic, making,liked, saved;
     private DatabaseReference nodeRoot;
     private List<CommentModel> commentModels;
 
@@ -36,6 +39,8 @@ public class DishModel implements Parcelable {
         userModel = in.readParcelable(UserModel.class.getClassLoader());
         likes = in.readInt();
         ingredients = in.createStringArrayList();
+        liked = in.createStringArrayList();
+        saved = in.createStringArrayList();
         dish_pic = in.createStringArrayList();
         making = in.createStringArrayList();
         commentModels = in.createTypedArrayList(CommentModel.CREATOR);
@@ -55,7 +60,21 @@ public class DishModel implements Parcelable {
 
 
 
+    public List<String> getLiked() {
+        return liked;
+    }
 
+    public void setLiked(List<String> liked) {
+        this.liked = liked;
+    }
+
+    public List<String> getSaved() {
+        return saved;
+    }
+
+    public void setSaved(List<String> saved) {
+        this.saved = saved;
+    }
 
     public String getUser_id() {
         return user_id;
@@ -263,6 +282,8 @@ public class DishModel implements Parcelable {
         dest.writeParcelable(userModel, flags);
         dest.writeInt(likes);
         dest.writeStringList(ingredients);
+        dest.writeStringList(liked);
+        dest.writeStringList(saved);
         dest.writeStringList(dish_pic);
         dest.writeStringList(making);
         dest.writeTypedList(commentModels);

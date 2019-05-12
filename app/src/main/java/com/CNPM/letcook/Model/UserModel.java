@@ -3,22 +3,27 @@ package com.CNPM.letcook.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserModel implements Parcelable {
 
     private String name, pic_profile, user_id;
-
+    private ArrayList<String> liked, saved;
     private DatabaseReference dataUserNode;
-
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabaseUser;
 
     protected UserModel(Parcel in) {
         name = in.readString();
         pic_profile = in.readString();
         user_id = in.readString();
+        liked = in.createStringArrayList();
+        saved = in.createStringArrayList();
 
     }
 
@@ -34,6 +39,10 @@ public class UserModel implements Parcelable {
         }
     };
 
+    public UserModel() {
+        dataUserNode = FirebaseDatabase.getInstance().getReference().child("users");
+    }
+
     public String getUser_id() {
         return user_id;
     }
@@ -42,18 +51,23 @@ public class UserModel implements Parcelable {
         this.user_id = user_id;
     }
 
-    public DatabaseReference getDataUserNode() {
-        return dataUserNode;
+
+    public ArrayList<String> getLiked() {
+        return liked;
     }
 
-    public void setDataUserNode(DatabaseReference dataUserNode) {
-        this.dataUserNode = dataUserNode;
+    public void setLiked(ArrayList<String> liked) {
+        this.liked = liked;
     }
 
-
-    public UserModel() {
-        dataUserNode = FirebaseDatabase.getInstance().getReference().child("users");
+    public ArrayList<String> getSaved() {
+        return saved;
     }
+
+    public void setSaved(ArrayList<String> saved) {
+        this.saved = saved;
+    }
+
 
     public String getName() {
         return name;
@@ -70,8 +84,9 @@ public class UserModel implements Parcelable {
     public void setPic_profile(String pic_profile) {
         this.pic_profile = pic_profile;
     }
-    public void addInfo(UserModel userModel,String userID){
-        dataUserNode.child(userID).setValue(userModel,userID);
+
+    public void addInfo(UserModel userModel, String userID) {
+        dataUserNode.child(userID).setValue(userModel, userID);
     }
 
 
@@ -80,11 +95,13 @@ public class UserModel implements Parcelable {
         return 0;
     }
 
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(pic_profile);
         dest.writeString(user_id);
-
+        dest.writeStringList(liked);
+        dest.writeStringList(saved);
     }
 }
