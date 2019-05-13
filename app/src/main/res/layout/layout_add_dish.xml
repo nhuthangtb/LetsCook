@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:layout="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
@@ -21,8 +21,8 @@
             android:orientation="vertical"
             android:paddingRight="10dp">
 
-            <ImageButton
-                android:id="@+id/btnAddAvatar"
+            <ImageView
+                android:id="@+id/imgAddImage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:src="@drawable/download" />
@@ -91,31 +91,30 @@
                     android:textSize="25sp" />
 
                 <LinearLayout
+                    android:id="@+id/viewAddMaking"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <include
-                        android:id="@+id/test"
-                        layout="@layout/field_add_making" />
+                    <include layout="@layout/field_add_making" />
 
-                    <LinearLayout
-                        android:id="@+id/viewAddMaking"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                    <!--<LinearLayout-->
+                    <!---->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--</LinearLayout>-->
 
 
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/txtAddMaking"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/add_making" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/txtAddMaking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/add_making" />
 
                 <Button
                     android:id="@+id/btnAddDish"
@@ -123,6 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/add_dish" />
+
 
             </LinearLayout>
 

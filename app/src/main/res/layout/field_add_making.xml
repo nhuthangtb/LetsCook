@@ -17,24 +17,27 @@
         android:gravity="center"
         android:text="1"
         android:textSize="15dp" />
+
     <LinearLayout
         android:id="@+id/viewMaking"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <EditText
             android:id="@+id/edAddMaking"
-            android:paddingLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_making"/>
-        <ImageView
-            android:id="@+id/imgDelMaking"
-            android:layout_width="72dp"
+            android:hint="@string/hint_making"
+            android:paddingLeft="5dp" />
+
+        <Button
+            android:id="@+id/btnDelMaking"
+            android:layout_width="50dp"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_gravity="end"
-            app:srcCompat="@drawable/ic_delete" />
+            android:layout_weight="1"
+            android:background="@drawable/ic_delete_black_24dp" />
     </LinearLayout>
 
 

@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (password.isEmpty()) {
 
-            edPassword.setError("Password is empty");
+            edPassword.setError("Mật khẩu trống");
             edPassword.requestFocus();
             return;
         }

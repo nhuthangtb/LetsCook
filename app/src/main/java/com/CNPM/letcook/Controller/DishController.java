@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 
 import com.CNPM.letcook.Adapters.RecyclerViewAdapter;
@@ -16,7 +17,9 @@ import com.CNPM.letcook.Model.DishModel;
 import com.CNPM.letcook.Model.UserModel;
 import com.CNPM.letcook.R;
 import com.CNPM.letcook.View.VerticalSpaceItemDecoration;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -36,7 +39,7 @@ public class DishController {
     private DishModel dishModel;
     private RecyclerViewAdapter recyclerViewAdapter;
 
-    int item = 3;
+    private int item = 3;
 
     public DishController(Context context) {
         this.context = context;
@@ -105,12 +108,22 @@ public class DishController {
     }
 
 
-    public void addDish(DishModel dishModel){
-        DatabaseReference nodeDish = FirebaseDatabase.getInstance().getReference().child("dish");
-
-        String dish_id = nodeDish.push().getKey();
-        nodeDish.child(dish_id).setValue(dishModel);
-    }
+//    public void addDish(DishModel dishModel){
+//        DatabaseReference nodeDish = FirebaseDatabase.getInstance().getReference().child("dish");
+//
+//        String dish_id = nodeDish.push().getKey();
+//        nodeDish.child(dish_id).setValue(dishModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if(task.isSuccessful()){
+//                    Toast.makeText(context, "Thêm món ăn thành công", Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    Toast.makeText(context, "Thêm món ăn thất ", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
 
 
 

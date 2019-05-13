@@ -176,17 +176,23 @@
                 android:background="@drawable/comment_border"
                 android:drawableLeft="@drawable/ic_wave"
                 android:hint="   Bình luận về món ăn này..."
+                android:maxWidth="280dp"
                 android:paddingLeft="7dp"
-                android:singleLine="true"
+                android:maxLines="3"
+                android:textColorLink="#2196F3"
                 android:textSize="18sp" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/btnSend"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_send"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_send_black_24dp"
+
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:visibility="visible" />
         </LinearLayout>
+
 
 
     </LinearLayout>

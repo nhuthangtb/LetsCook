@@ -74,7 +74,7 @@ public class DishActivity extends AppCompatActivity implements HomePageInterface
                 // Thêm comment
                 String comment = edComment.getText().toString();
                 commentController = new CommentController();
-                commentController.addComment(comment,dishModel.getDish_id());
+                commentController.addComment(comment,dishModel.getDish_id(),getApplicationContext());
             }
         });
 

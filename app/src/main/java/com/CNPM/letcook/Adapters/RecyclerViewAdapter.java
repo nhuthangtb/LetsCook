@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -80,13 +81,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
         //xử lý người dùng ấn like và save
-//        boolean check ;
-//        check = recyclerViewHolder.checkBoxLike.isChecked();
-//        boolean check = userController.isLike("dish_id_5");
-//        if(check)recyclerViewHolder.checkBoxLike.setChecked(true);
-////        else recyclerViewHolder.checkBoxLike.setChecked(false);
-////        recyclerViewHolder.checkBoxLike.setChecked(true);
-//        Log.d("check",userController.isLike(dishModel.getDish_id())+"");
 
 
         mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -126,10 +120,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 final String comment = recyclerViewHolder.edComment.getText().toString();
                 if (!comment.isEmpty()) {
                     commentController = new CommentController();
-                    commentController.addComment(comment, dishModel.getDish_id());
+                    commentController.addComment(comment, dishModel.getDish_id(),context);
 
                 } else {
-                    recyclerViewHolder.edComment.setError("Comment trống nè hihi!!!");
+                    recyclerViewHolder.edComment.setError("Comment trống kìa hihi!!!");
                     recyclerViewHolder.edComment.requestFocus();
                 }
             }
@@ -173,7 +167,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ImageView imgDish;
         CircleImageView img_profile;
         CardView cardView;
-        ImageButton btnSend;
+        Button btnSend;
         EditText edComment;
         CheckBox checkBoxLike, checkBoxSave;
 

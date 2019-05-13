@@ -31,9 +31,6 @@ public class HomePageFragment extends Fragment {
 
     DishController dishController;
     NestedScrollView nestedScrollView;
-    private static FirebaseUser user;
-    private static DatabaseReference mDatabaseUser;
-    private DatabaseReference mDatabase;
 
 
 
@@ -52,9 +49,7 @@ public class HomePageFragment extends Fragment {
         nestedScrollView = getView().findViewById(R.id.NestedScroll);
         dishController = new DishController(getContext());
         dishController.getListDishController(getContext(), recyclerView, nestedScrollView);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("users");
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
     }
 
 
