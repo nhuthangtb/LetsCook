@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00EEBEBE"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,10 +16,10 @@
             android:id="@+id/img_profile"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:src="@drawable/ico_user"
-            app:civ_border_color="#FF000000"
+            app:civ_border_color="#0C379C"
             app:civ_border_width="2dp"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -38,21 +40,20 @@
                 android:id="@+id/btnEditInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_orange_light"
+                android:background="#8CE5F3"
                 android:padding="3dp"
-                android:text="@string/edit_info_user"
-                />
+                android:text="@string/edit_info_user" />
         </LinearLayout>
 
 
-
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
         android:paddingLeft="10dp"
-        android:textStyle="bold"
+        android:paddingTop="30dp"
+        android:text="@string/post"
         android:textSize="30sp"
-        android:text="@string/post" />
+        android:textStyle="bold" />
 </LinearLayout>

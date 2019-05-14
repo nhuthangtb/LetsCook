@@ -18,6 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_weight="1"
-        android:background="@drawable/ic_delete_black_24dp" />
+        android:background="@drawable/del" />
 
 </LinearLayout>

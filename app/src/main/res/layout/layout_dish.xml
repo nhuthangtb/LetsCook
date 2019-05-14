@@ -39,7 +39,7 @@
                     android:padding="5dp"
                     android:text="@string/dish_name"
                     android:textColor="@android:color/holo_green_light"
-                    android:textSize="30sp" />
+                    android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/txtDesc"
@@ -48,7 +48,7 @@
                     android:padding="5dp"
                     android:text="@string/desc_dish"
                     android:textColor="@android:color/black"
-                    android:textSize="10sp" />
+                    android:textSize="40sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                     android:layout_marginTop="20dp"
                     android:paddingBottom="10dp"
                     android:text="@string/title_ingredients"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -79,9 +79,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/textview_border"
+                    android:paddingStart="5dp"
                     android:paddingLeft="5dp"
                     android:text="@string/hint_ingredient"
-                    android:paddingStart="5dp" />
+                    android:textSize="25dp" />
 
 
                 <TextView
@@ -91,13 +92,14 @@
                     android:layout_marginTop="20dp"
                     android:paddingBottom="10dp"
                     android:text="@string/title_Making"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:textStyle="bold" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycleViewMaking"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -118,7 +120,7 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/comment"
                     android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:textStyle="bold" />
                 <LinearLayout
                     android:layout_width="match_parent"

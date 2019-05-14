@@ -2,16 +2,18 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cardView"
-    >
+    app:cardBackgroundColor="#8BDBFF"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="398dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="13dp"
-        android:background="@android:color/white"
+        android:background="#8BDBFF"
         android:orientation="vertical">
 
 
@@ -46,9 +48,9 @@
         </LinearLayout>
 
         <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical">-->
 
         <!--</LinearLayout>-->
 
@@ -59,59 +61,79 @@
             android:layout_marginRight="10dp"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imgDish"
+            <TextView
+                android:id="@+id/txtDishName"
                 android:layout_width="match_parent"
-                android:layout_height="232dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:scaleType="fitXY" />
-            <LinearLayout
-                android:orientation="horizontal"
+                android:text="Dish Name"
+                android:textColor="@color/colorText"
+                android:textSize="30sp" />
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/imgDish"
+                    android:layout_width="380dp"
+                    android:layout_height="232dp"
+                    android:scaleType="fitXY" />
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
                 <CheckBox
 
-                    android:layout_marginLeft="30dp"
                     android:id="@+id/checkBoxLike"
-                    android:background="@drawable/ic_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@null"
-                    />
+                    android:layout_marginLeft="0dp"
+                    android:background="@drawable/ic_like"
+                    android:button="@null" />
+
                 <CheckBox
                     android:id="@+id/checkBoxSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/ic_save"
                     android:button="@null"
                     android:checked="false"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:gravity="center" />
+
                 <TextView
                     android:id="@+id/txtComment"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:background="@drawable/ic_insert_comment_black_24dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/ic_insert_comment_black_24dp"
+                    android:gravity="center" />
             </LinearLayout>
+
             <LinearLayout
-                android:paddingTop="5dp"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtNumLike"
-                    android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 lượt thích"/>
+                    android:layout_marginLeft="0dp"
+                    android:text="10 lượt thích" />
+
                 <TextView
                     android:id="@+id/txtNumSave"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 lượt lưu"/>
+                    android:layout_marginLeft="10dp"
+                    android:text="10 lượt lưu" />
 
             </LinearLayout>
 
@@ -130,21 +152,13 @@
             android:layout_marginRight="10dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtDishName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Dish Name"
-                android:textColor="@android:color/holo_green_light"
-                android:textSize="30sp" />
-
 
             <TextView
                 android:id="@+id/txtDesciption"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
 
+                android:layout_marginTop="10dp"
                 android:text="Description" />
         </LinearLayout>
 
@@ -161,7 +175,7 @@
                 android:layout_height="60dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:src="@drawable/ico_user"
+                android:src="@drawable/user"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -177,8 +191,8 @@
                 android:drawableLeft="@drawable/ic_wave"
                 android:hint="   Bình luận về món ăn này..."
                 android:maxWidth="280dp"
-                android:paddingLeft="7dp"
                 android:maxLines="3"
+                android:paddingLeft="7dp"
                 android:textColorLink="#2196F3"
                 android:textSize="18sp" />
 
@@ -186,13 +200,12 @@
                 android:id="@+id/btnSend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_send_black_24dp"
-
-                android:gravity="center"
                 android:layout_gravity="center"
+
+                android:background="@drawable/send40"
+                android:gravity="center"
                 android:visibility="visible" />
         </LinearLayout>
-
 
 
     </LinearLayout>
