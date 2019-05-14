@@ -42,8 +42,7 @@ import static android.app.Activity.RESULT_OK;
 public class AddDishFragment extends Fragment implements View.OnClickListener {
 
     int GALLERY_REQUEST_CODE = 1;
-    int REQUEST_MAKING = 2;
-    int REQUEST_MAKING1 = 3;
+
 
     ImageView imgAddImage;
     EditText editDishname, editDescDish, edAddMaking, edAddIngredient;
@@ -51,11 +50,9 @@ public class AddDishFragment extends Fragment implements View.OnClickListener {
     TextView txtMaking, txtAddIngre, txtAddMaking;
     List<String> Ingredients = new ArrayList<>();
     List<String> Makings = new ArrayList<>();
-    LinearLayout layoutIgre, layout, viewAddMaking, viewMaking, test;
+    LinearLayout layoutIgre, layout, viewAddMaking, viewMaking;
     private DishModel dishModel;
     FirebaseUser user;
-
-    List<Bitmap> imgFromCamera;
     Uri uri;
     List<Uri> imgDish = new ArrayList<>();
 
@@ -256,8 +253,8 @@ public class AddDishFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        FirebaseStorage.getInstance().getReference().child("Picture/" + uri.getPathSegments()).putFile(uri);
-        nodePictureDish.setValue(dish_id);
+        FirebaseStorage.getInstance().getReference().child("Picture/" + uri.getLastPathSegment()).putFile(uri);
+        nodePictureDish.child(dish_id).child("pic_id").setValue(uri.getLastPathSegment());
 
     }
 }
